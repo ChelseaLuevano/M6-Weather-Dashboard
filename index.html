@@ -18,16 +18,20 @@
 
     <!-- Navigation Panel for city selection -->
     <aside>
-        <h2>Search for a City:</h2>
-        <input type="text" id="citySearch" value="Last City Searched">
-        <!-- Search Button for  -->
-        <button id="searchbtn">Search</button>
+    
+        <form>
+            <label class="form-label"><h2>Search for a City:</h2></label>
+            <input type="text" id="citySearch" value="Last City Searched">
+            <!-- Search Button for  -->
+            <button type="submit" class="btn" id="searchbtn">Search</button>
+        </form>
         <!-- This section will contain the list of previously searched cities -->
         <ul id="cityList">
-          <li>place holder city</li>  
-          <li>place holder city</li> 
-          <li>place holder city</li> 
+          <li><button class="btn" id="cityBtn">place holder city</button></li>  
+          <li><button class="btn" id="cityBtn">place holder city</button></li>  
+          <li><button class="btn" id="cityBtn">place holder city</button></li>  
         </ul>
+    
     </aside>
 
     <main>
