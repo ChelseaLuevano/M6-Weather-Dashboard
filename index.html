@@ -20,9 +20,10 @@
     <aside>
         <h2>Search for a City:</h2>
         <input type="text" id="citySearch" value="Last City Searched">
-        <button>Search</button>
+        <!-- Search Button for  -->
+        <button id="searchbtn">Search</button>
         <!-- This section will contain the list of previously searched cities -->
-        <ul>
+        <ul id="cityList">
           <li>place holder city</li>  
           <li>place holder city</li> 
           <li>place holder city</li> 
@@ -32,12 +33,20 @@
     <main>
         <!-- Currently Selected City Container -->
         <div>
-
+            <h2>City Title <br> Current Date </h2>
+            <p class="cityDetails" id="temperature">Temperature</p>
+            <p class="cityDetails" id="wind">Wind</p>
+            <p class="cityDetails" id="humidity">Humidity</p>
         </div>
 
         <!-- 5 Day Weather Forecast Container -->
         <div>
-
+            <ul id="forecast">
+                <li data-day="1" class="forecast-card"></li>  
+                <li data-day="2" class="forecast-card"></li> 
+                <li data-day="3" class="forecast-card"></li> 
+                <li data-day="4" class="forecast-card"></li> 
+                <li data-day="5" class="forecast-card"></li>
         </div>
     </main>
      <!-- Java Script File tag -->
