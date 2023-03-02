@@ -19,33 +19,34 @@
     <!-- Navigation Panel for city selection -->
     <aside>
     
-        <form>
+        <form id="city-form">
             <label class="form-label"><h2>Search for a City:</h2></label>
-            <input type="text" id="citySearch" value="Last City Searched">
+            <input type="text" id="city" value="Last City Searched">
             <!-- Search Button for  -->
             <button type="submit" class="btn" id="searchbtn">Search</button>
         </form>
+
         <!-- This section will contain the list of previously searched cities -->
-        <ul id="cityList">
-          <li><button class="btn" id="cityBtn">place holder city</button></li>  
-          <li><button class="btn" id="cityBtn">place holder city</button></li>  
-          <li><button class="btn" id="cityBtn">place holder city</button></li>  
+        <ul id="city-list">
+          <li><button class="btn" id="city-btn">place holder city</button></li>  
+          <li><button class="btn" id="city-btn">place holder city</button></li>  
+          <li><button class="btn" id="city-btn">place holder city</button></li>  
         </ul>
     
     </aside>
 
     <main>
         <!-- Currently Selected City Container -->
-        <div>
+        <div id="current-weather">
             <h2>City Title <br> Current Date </h2>
-            <p class="cityDetails" id="temperature">Temperature</p>
-            <p class="cityDetails" id="wind">Wind</p>
-            <p class="cityDetails" id="humidity">Humidity</p>
+            <p class="city-details" id="temperature">Temperature</p>
+            <p class="city-details" id="wind">Wind</p>
+            <p class="city-details" id="humidity">Humidity</p>
         </div>
 
         <!-- 5 Day Weather Forecast Container -->
-        <div>
-            <ul id="forecast">
+        <div id="forecast">
+            <ul id="forecast-list">
                 <li data-day="1" class="forecast-card"></li>  
                 <li data-day="2" class="forecast-card"></li> 
                 <li data-day="3" class="forecast-card"></li> 
