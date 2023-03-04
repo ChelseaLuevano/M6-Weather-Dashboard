@@ -23,6 +23,35 @@ h1{
 padding: 1%;
 }
 
+/* Page Section */
+#page-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: ;
+}
+/*  */
+aside {
+    padding: 1%;
+    width: 20%;
+}
+
+main {
+    width: 75%;
+    padding-left: 1%;
+    padding-right: 10%;
+}
+
+/* City Form Styling */
+#city-form{
+    display: flex;
+    flex-direction: column;
+}
+
+/* h2 Styling */
+h2 {
+    font-weight: bold;
+}
+
 /* Remove bullet points in lists */
 ul{
     list-style-type: none;
@@ -39,4 +68,10 @@ ul{
     background-color: var(--accent-color);
     border-color: var(--accent-color); 
     color: var(--accent-color2);
+}
+
+/* Current Weather Container Styling */
+#current-weather {
+    margin: 2%;
+    border: 2px solid ;
 }
