@@ -45,12 +45,15 @@ main {
 #city-form{
     display: flex;
     flex-direction: column;
-}
 
-/* h2 Styling */
-h2 {
+} 
+
+/* h2 & h3 bold font styling */
+h2, h3 {
     font-weight: bold;
 }
+
+
 
 /* Remove bullet points in lists */
 ul{
@@ -61,6 +64,7 @@ ul{
 .btn {
     background-color: var(--accent-color2);
     border-color: var(--accent-color2); 
+    color: black;
 }
 
 /* Search Button Styling */
@@ -74,4 +78,15 @@ ul{
 #current-weather {
     margin: 2%;
     border: 2px solid ;
+}
+
+/* Styling to have the City Title and Current Date on same line within Current Weather Container */
+#current-weather-titles {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Forecast Container Styling */
+#forecast {
+    margin: 2%;
 }
