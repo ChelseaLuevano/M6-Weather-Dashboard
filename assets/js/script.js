@@ -13,26 +13,45 @@ let lastSearchedCityEl = document.querySelector('input').value;
 // Data Variables
 let state;
 let country;
-let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl.value + "&appid=" + apiKey;
+let queryURL;
+let city;
 
-// function
+
+// Function to be used if user input a cityName into form
 let formSearchHandler = function (event) {
     event.preventDefault(); 
 
     // Defining cityName input box value entered by user and removing any whitespace
-    let cityName = cityInputEl.value.trim();
+    city = cityInputEl.value.trim();
 
-    WeatherAPI();
-
-    if (cityName) {
-        console.log("wowww I did it")
+    if (city) {
+        // If there is a value in the cityName, call the Weather API.
+        WeatherAPI();
     } else {
     alert("Wow I didn't do it");
     } 
 }
 
+
+// Function to translate city to longitude and latitidue coordinates to use Geocoder API 
+    //  function translateCityName(city.name) {
+    //     let queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + {city name},{state code},{country code} + "&appid=" + apiKey;
+        
+    //     if (cityName) {
+    //         WeatherAPI(name);
+    //         console.log("wowww I did it")
+    //     } else {
+       
+    //     } 
+    // }
+
+
+
 // Function to call weather API to determine city weather
 function WeatherAPI () {
+    cityName = cityInputEl.value.trim();
+    console.log(city);
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     fetch(queryURL)
     .then(function(response){
             if (response.ok) {
@@ -49,14 +68,7 @@ function WeatherAPI () {
 }
 
 
-
-// When the search button is clicked, then the Weather API function 
-searchButtonEl.addEventListener('submit',formSearchHandler);
-
-// save cityInputEl Value & call Weather API function
-// function saveCity() {
-//     cityInputEl = cityInputEl.value.trim();
-//     WeatherAPI();
-// }
+// When the search button is clicked on the city form, then call the Form Search Handler function 
+cityFormEl.addEventListener('submit',formSearchHandler);
 
 
