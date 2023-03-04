@@ -9,6 +9,25 @@
     
 }
 
+/* Header Styling */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-image: linear-gradient(to right, rgb(110, 110, 174), blue, rgb(18, 18, 85));
+    color: white;
+}
+
+/* H1 Styling */
+h1{
+padding: 1%;
+}
+
+/* Remove bullet points in lists */
+ul{
+    list-style-type: none;
+}
+
 /* Button Styling */
 .btn {
     background-color: var(--accent-color2);
