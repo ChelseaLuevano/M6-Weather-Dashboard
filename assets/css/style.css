@@ -1,0 +1,23 @@
+
+:root {
+  
+    --main-color:#6D929B;
+    --accent-color: #5a8ec2 ;
+    --accent-color2:rgb(195, 193, 193);
+
+    font-size: 100%;
+    
+}
+
+/* Button Styling */
+.btn {
+    background-color: var(--accent-color2);
+    border-color: var(--accent-color2); 
+}
+
+/* Search Button Styling */
+#searchbtn {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color); 
+    color: var(--accent-color2);
+}

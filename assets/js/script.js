@@ -1,14 +1,25 @@
 // API Key Variable
 let apiKey = "eec8d3f247c70019f179e96be36c660d"; 
 
-// Query Selector Variables
+// Query Selector Variables for City Form
 let cityFormEl = document.querySelector('#city-form');
 let searchButtonEl = document.querySelector('#searchbtn');
-let cityButtonsEl = document.querySelector('#city-btn');
 let cityInputEl = document.querySelector('#city');
-let cityWeatherEl = document.querySelector('#city-weather');
-let forecastEl = document.querySelector('#forecast');
+
+// Query Selector Variables for Previously Searched Cities 
 let lastSearchedCityEl = document.querySelector('input').value;
+let cityButtonsEl = document.querySelector('#city-btn');
+
+// Query Selector Variables for Currently Selected City Container
+let cityWeatherEl = document.querySelector('#city-weather');
+let cityTitleEL = document.querySelector('#city-title');
+let cityTemperatureEl = document.querySelector('#temperature');
+let cityWindEl = document.querySelector('#wind');
+let cityHumidityEl = document.querySelector('#humidity');
+
+// Query Selector Variables for 5 Day Weather Forecast Container
+let forecastEl = document.querySelector('#forecast');
+
 
 // Data Variables
 let state;
@@ -26,9 +37,9 @@ let formSearchHandler = function (event) {
 
     if (city) {
         // If there is a value in the cityName, call the Weather API.
-        WeatherAPI();
+        weatherAPI();
     } else {
-    alert("Wow I didn't do it");
+    alert("Please enter a city name.");
     } 
 }
 
@@ -48,16 +59,19 @@ let formSearchHandler = function (event) {
 
 
 // Function to call weather API to determine city weather
-function WeatherAPI () {
+function weatherAPI () {
     cityName = cityInputEl.value.trim();
-    console.log(city);
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
+
     fetch(queryURL)
-    .then(function(response){
+        .then(function(response){
             if (response.ok) {
                 // need to look at other examples to make sure the .then below is correct as instructor said this isn't happening
                 response.json().then(function (data) {
                     console.log(data);
+                    updateCity(data, name);
+                    updateTemperatureAndHumidity(data.main);
+                    updateWind(data.wind)
                   });
             }
             else {
@@ -67,6 +81,26 @@ function WeatherAPI () {
         ) 
 }
 
+// // Function to update the city value in Currently Selected City Container
+// function updateCity(name) {
+//     cityTitleEL.textContent = name;
+// }
+
+// Function to update the city value in Currently Selected City Container
+let updateCity = function (name) {
+    cityTitleEL.textContent = name;
+}
+
+// Function to update the weather values in Currently Selected City Container
+function updateTemperatureAndHumidity(temp, humidity) {
+   cityTemperatureEl.textContent = temp;
+   cityHumidityEl.textContent = humidity;
+}
+
+// Function to update the wind values in Currently Selected City Container
+function updateWind(wind) {
+    cityWindEl.textContent = wind;
+ }
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 
 cityFormEl.addEventListener('submit',formSearchHandler);
