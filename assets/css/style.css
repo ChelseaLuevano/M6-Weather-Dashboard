@@ -42,11 +42,25 @@ main {
 }
 
 /* City Form Styling */
-#city-form{
+#city-form {
     display: flex;
     flex-direction: column;
-
+    /* justify-content: space-between; */
+    margin: 5%;
+    padding: 2%;
 } 
+
+/* Add line after form before city-list */
+#city-list {
+    padding: 2%;
+    margin: 5%;
+    border-top: 10px gray;
+}
+
+li {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
 
 /* h2 & h3 bold font styling */
 h2, h3 {
@@ -65,6 +79,7 @@ ul{
     background-color: var(--accent-color2);
     border-color: var(--accent-color2); 
     color: black;
+    width: 100%;
 }
 
 /* Search Button Styling */
