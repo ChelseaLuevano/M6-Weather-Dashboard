@@ -9,6 +9,7 @@ let cityInputEl = document.querySelector('#city');
 // Query Selector Variables for Previously Searched Cities 
 let lastSearchedCityEl = document.querySelector('input').value;
 let cityButtonsEl = document.querySelector('#city-btn');
+let cityListEl = document.querySelector('#city-list');
 
 // Query Selector Variables for Currently Selected City Container
 let cityWeatherEl = document.querySelector('#city-weather');
@@ -87,6 +88,9 @@ let formSearchHandler = function (event) {
 
 // Function to call weather API to determine city weather
 function weatherAPI () {
+
+    event.preventDefault();
+
     cityName = cityInputEl.value.trim();
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
 
@@ -98,6 +102,8 @@ function weatherAPI () {
                     updateSelectedCity(data);
                     updateForecast(data);
                     currentDayDate(data);
+                    saveCitytoStorage(data);
+                    readStorage(data);
                   });
             }
             else {
@@ -142,14 +148,15 @@ function currentDayDate (data){
     // Use the newly created milliseconds value to create a date object with the new Date() constructor method
     let dataObject = new Date(milliseconds);
     // Use the .toLocaleString() function to convert the date object into human-friendly date strings
-    currentDayHour = dataObject.toLocaleString("en-US", {hour: "numeric"});
+    currentDay = dataObject.toLocaleString("en-GB", {day: "numeric"});
     
-    console.log(currentDayHour);
+    console.log(currentDay);
 
-    secondDayHour = (currentDayHour + 24);
-    console.log(secondDayHour);
+    secondDay = parseInt(currentDay) + 1;
 
-    secondDayHour.toLocaleString("en-US", {dateStyle: "short"});
+    console.log(secondDay);
+
+    // secondDay.toLocaleString("en-US", {dateStyle: "short"});
 
 
 }
@@ -183,6 +190,31 @@ function updateForecast(data) {
 
 
 }
+
+// store the cities searched locally
+function saveCitytoStorage(data){
+    localStorage.setItem("name", data.name);
+}
+
+// read storage
+function readStorage(data){
+    
+        let savedCity = data.name;
+
+        let keyStorage = localStorage.getItem(savedCity);
+    
+     
+        // create city button list item
+        let searchedCityEl = document.createElement('li');
+        searchedCityEl.textContent = savedCity;
+        // searchedCityEl.setAttribute(id="city-btn");
+        cityListEl.appendChild(document.createTextNode(savedCity));
+       
+        
+        // cityButtonsEl.textContent;
+
+}
+
 
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 

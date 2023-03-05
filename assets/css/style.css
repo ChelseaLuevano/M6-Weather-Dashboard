@@ -85,6 +85,7 @@ ul{
     border-color: var(--accent-color2); 
     color: black;
     width: 98%;
+    margin: 2%;
 }
 
 /* Style the form elements to have some spacing */
