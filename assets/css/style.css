@@ -28,14 +28,16 @@ padding: 1%;
 #page-section {
     display: flex;
     flex-direction: row;
-    flex-wrap: ;
+    flex-wrap: wrap;
 }
-/*  */
+
+/* styling for left-hand side aside element */
 aside {
     padding: 1%;
     width: 20%;
 }
 
+/* sytling for right-hand side main element */
 main {
     width: 75%;
     padding-left: 1%;
@@ -46,7 +48,9 @@ main {
 #city-form {
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    /* flex-wrap: wrap; */
+    /* align-content:space-between; */
+    margin-bottom: 2%;
     padding: 2%;
 } 
 
@@ -81,6 +85,11 @@ ul{
     border-color: var(--accent-color2); 
     color: black;
     width: 100%;
+}
+
+/* Style the form elements to have some spacing */
+.form {
+    margin: 2%;
 }
 
 /* Search Button Styling */
