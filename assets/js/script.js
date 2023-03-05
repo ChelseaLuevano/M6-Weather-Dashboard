@@ -13,13 +13,33 @@ let cityButtonsEl = document.querySelector('#city-btn');
 // Query Selector Variables for Currently Selected City Container
 let cityWeatherEl = document.querySelector('#city-weather');
 let cityTitleEL = document.querySelector('#city-title');
-let cityDateEl = document.querySelector ('#city-date')
+let cityDateEl = document.querySelector ('#city-date');
 let cityTemperatureEl = document.querySelector('#temperature');
 let cityWindEl = document.querySelector('#wind');
 let cityHumidityEl = document.querySelector('#humidity');
 
 // Query Selector Variables for 5 Day Weather Forecast Container
 let forecastEl = document.querySelector('#forecast');
+let day1Card= document.querySelector('#date-1');
+let day2Card= document.querySelector('#date-2');
+let day3Card= document.querySelector('#date-3');
+let day4Card= document.querySelector('#date-4');
+let day5Card= document.querySelector('#date-5');
+let tempDay1 = document.querySelector('#temp-1');
+let tempDay2 = document.querySelector('#temp-2');
+let tempDay3 = document.querySelector('#temp-3');
+let tempDay4 = document.querySelector('#temp-4');
+let tempDay5 = document.querySelector('#temp-5');
+let windDay1 = document.querySelector('#wind-1');
+let windDay2 = document.querySelector('#wind-2');
+let windDay3 = document.querySelector('#wind-3');
+let windDay4 = document.querySelector('#wind-4');
+let windDay5 = document.querySelector('#wind-5');
+let humidityDay1 = document.querySelector('#humidity-1');
+let humidityDay2 = document.querySelector('#humidity-2');
+let humidityDay3 = document.querySelector('#humidity-3');
+let humidityDay4 = document.querySelector('#humidity-4');
+let humidityDay5 = document.querySelector('#humidity-5');
 
 
 // Data Variables
@@ -67,10 +87,10 @@ function weatherAPI () {
     fetch(queryURL)
         .then(function(response){
             if (response.ok) {
-                // need to look at other examples to make sure the .then below is correct as instructor said this isn't happening
                 response.json().then(function (data) {
                     console.log(data);
                     updateCity(data);
+                    updateDate (data);
                     updateTemperatureAndHumidity(data.main);
                     updateWind(data.wind)
                   });
@@ -87,9 +107,15 @@ function weatherAPI () {
 //     cityTitleEL.textContent = name;
 // }
 
+
 // Function to update the city value in Currently Selected City Container
 let updateCity = function (name) {
     cityTitleEL.textContent = name.name;
+}
+
+// Function to update the date value in Currently Selected City Container
+let updateDate = function(dt_txt) {
+    cityDateEl.textContent = dt_txt;
 }
 
 // Function to update the weather values in Currently Selected City Container
