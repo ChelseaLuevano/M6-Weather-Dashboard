@@ -193,7 +193,7 @@ function updateForecast(data) {
 
 // store the cities searched locally
 function saveCitytoStorage(data){
-    localStorage.setItem("name", data.name);
+    localStorage.setItem("name", JSON.stringify(data.name));
 }
 
 // read storage
@@ -201,14 +201,16 @@ function readStorage(data){
     
         let savedCity = data.name;
 
-        let keyStorage = localStorage.getItem(savedCity);
+        let keyStorage = JSON.parse(localStorage.getItem(savedCity));
     
-     
+        console.log(keyStorage);
+
         // create city button list item
         let searchedCityEl = document.createElement('li');
-        searchedCityEl.textContent = savedCity;
+        // update text of the new list item
+        searchedCityEl.textContent = keyStorage;
         // searchedCityEl.setAttribute(id="city-btn");
-        cityListEl.appendChild(document.createTextNode(savedCity));
+        cityListEl.appendChild(searchedCityEl);
        
         
         // cityButtonsEl.textContent;
