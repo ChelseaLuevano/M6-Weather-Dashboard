@@ -90,7 +90,6 @@ function weatherAPI () {
                 response.json().then(function (data) {
                     console.log(data);
                     updateSelectedCity(data);
-                    updateDate (data);
                   });
             }
             else {
@@ -106,13 +105,22 @@ function updateSelectedCity(data) {
     cityTemperatureEl.textContent = data.main.temp;
     cityWindEl.textContent = data.wind.speed;
     cityHumidityEl.textContent = data.main.humidity;
+
+    // update current date and translate it from unix timestamp data format stored in the API
+    console.log (data.dt);
+    let unixTimestamp = data.dt;
+    // Convert the unix timestamp into milliseconds by multiplying it by 1000
+   let milliseconds = (data.dt * 1000);
+    // Use the newly created milliseconds value to create a date object with the new Date() constructor method
+    let dataObject = new Date(milliseconds);
+    // Use the .toLocaleString() function to convert the date object into human-friendly date strings
+    let humanDataFormat = dataObject.toLocaleString("en-US", {dateStyle: "short"});
+    // Update the city Date Element text content and add parentheses around date
+    cityDateEl.textContent = "(" + humanDataFormat + ")";
 }
 
 
-// Function to update the date value in Currently Selected City Container
-let updateDate = function(dt_txt) {
-    cityDateEl.textContent = dt_txt;
-}
+
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 
 cityFormEl.addEventListener('submit',formSearchHandler);
