@@ -4,6 +4,7 @@
     --main-color:#6D929B;
     --accent-color: #5a8ec2 ;
     --accent-color2:rgb(195, 193, 193);
+    --accent-color3: rgb(25, 26, 51);
 
     font-size: 100%;
     
@@ -109,4 +110,35 @@ p.city-details {
 /* Forecast Container Styling */
 #forecast {
     margin: 2%;
+}
+
+/* 5 Day Forecast Styling */
+#forecast-list {
+    /* background-color: var(--accent-color3); */
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+/* These list day stylings are so that the individual list items appear as cards with the dark background */
+li#day-1{
+    background-color: var(--accent-color3);
+}
+
+li#day-2{
+    background-color: var(--accent-color3);
+}
+
+li#day-3{
+    background-color: var(--accent-color3);
+}
+
+li#day-4{
+    background-color: var(--accent-color3);
+}
+
+li#day-5{
+    background-color: var(--accent-color3);
 }
