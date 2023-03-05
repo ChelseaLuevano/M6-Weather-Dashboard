@@ -99,6 +99,7 @@ ul{
 #current-weather-titles {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 /* Forecast Container Styling */

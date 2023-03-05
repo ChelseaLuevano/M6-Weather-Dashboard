@@ -13,6 +13,7 @@ let cityButtonsEl = document.querySelector('#city-btn');
 // Query Selector Variables for Currently Selected City Container
 let cityWeatherEl = document.querySelector('#city-weather');
 let cityTitleEL = document.querySelector('#city-title');
+let cityDateEl = document.querySelector ('#city-date')
 let cityTemperatureEl = document.querySelector('#temperature');
 let cityWindEl = document.querySelector('#wind');
 let cityHumidityEl = document.querySelector('#humidity');
@@ -69,7 +70,7 @@ function weatherAPI () {
                 // need to look at other examples to make sure the .then below is correct as instructor said this isn't happening
                 response.json().then(function (data) {
                     console.log(data);
-                    updateCity(data, name);
+                    updateCity(data);
                     updateTemperatureAndHumidity(data.main);
                     updateWind(data.wind)
                   });
@@ -88,13 +89,13 @@ function weatherAPI () {
 
 // Function to update the city value in Currently Selected City Container
 let updateCity = function (name) {
-    cityTitleEL.textContent = name;
+    cityTitleEL.textContent = name.name;
 }
 
 // Function to update the weather values in Currently Selected City Container
-function updateTemperatureAndHumidity(temp, humidity) {
-   cityTemperatureEl.textContent = temp;
-   cityHumidityEl.textContent = humidity;
+function updateTemperatureAndHumidity(temp, main) {
+   cityTemperatureEl.textContent = temp.temp;
+   cityHumidityEl.textContent = main.humidity;
 }
 
 // Function to update the wind values in Currently Selected City Container
