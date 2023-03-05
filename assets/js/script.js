@@ -14,6 +14,7 @@ let cityButtonsEl = document.querySelector('#city-btn');
 let cityWeatherEl = document.querySelector('#city-weather');
 let cityTitleEL = document.querySelector('#city-title');
 let cityDateEl = document.querySelector ('#city-date');
+let imgIconEl = document.querySelector ('#icon');
 let cityTemperatureEl = document.querySelector('#temperature');
 let cityWindEl = document.querySelector('#wind');
 let cityHumidityEl = document.querySelector('#humidity');
@@ -43,8 +44,13 @@ let humidityDay5 = document.querySelector('#humidity-5');
 
 
 // Data Variables
-let state;
-let country;
+let currentDayHour;
+let secondDayHour;
+let secondDay;
+let thirdDay;
+let fourthDay;
+let fifthDay;
+
 let queryURL;
 let city;
 
@@ -90,6 +96,8 @@ function weatherAPI () {
                 response.json().then(function (data) {
                     console.log(data);
                     updateSelectedCity(data);
+                    updateForecast(data);
+                    currentDayDate(data);
                   });
             }
             else {
@@ -102,12 +110,13 @@ function weatherAPI () {
 // // Function to update the city value in Currently Selected City Container
 function updateSelectedCity(data) {
     cityTitleEL.textContent = data.name;
-    cityTemperatureEl.textContent = data.main.temp;
-    cityWindEl.textContent = data.wind.speed;
-    cityHumidityEl.textContent = data.main.humidity;
+    cityTemperatureEl.textContent = data.main.temp + " F";
+    cityWindEl.textContent = data.wind.speed + " MPH";
+    cityHumidityEl.textContent = data.main.humidity + " %";
+
+ 
 
     // update current date and translate it from unix timestamp data format stored in the API
-    console.log (data.dt);
     let unixTimestamp = data.dt;
     // Convert the unix timestamp into milliseconds by multiplying it by 1000
    let milliseconds = (data.dt * 1000);
@@ -116,10 +125,64 @@ function updateSelectedCity(data) {
     // Use the .toLocaleString() function to convert the date object into human-friendly date strings
     let humanDataFormat = dataObject.toLocaleString("en-US", {dateStyle: "short"});
     // Update the city Date Element text content and add parentheses around date
-    cityDateEl.textContent = "(" + humanDataFormat + ")";
+    cityDateEl.textContent = "(" + humanDataFormat + ") ";
+
+    // update icon
+    let icon = data.weather[0].icon;
+    imgIconEl.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
 }
 
+// function to determine next 5 dates
+function currentDayDate (data){
+    // update current date and translate it from unix timestamp data format stored in the API
+    console.log (data.dt);
+    let unixTimestamp = data.dt;
+    // Convert the unix timestamp into milliseconds by multiplying it by 1000
+    let milliseconds = (data.dt * 1000);
+    // Use the newly created milliseconds value to create a date object with the new Date() constructor method
+    let dataObject = new Date(milliseconds);
+    // Use the .toLocaleString() function to convert the date object into human-friendly date strings
+    currentDayHour = dataObject.toLocaleString("en-US", {hour: "numeric"});
+    
+    console.log(currentDayHour);
 
+    secondDayHour = (currentDayHour + 24);
+    console.log(secondDayHour);
+
+    secondDayHour.toLocaleString("en-US", {dateStyle: "short"});
+
+
+}
+
+// Function to update 5 Day Weather Forecast Container
+function updateForecast(data) {
+    // day1Card.textContent = 
+    // day2Card.textContent = 
+    // day3Card.textContent = 
+    // day4Card.textContent = 
+    // day5Card.textContent = 
+
+    // tempDay1.textContent =
+    // tempDay2.textContent =
+    // tempDay3.textContent =
+    // tempDay4.textContent =
+    // tempDay5.textContent =
+
+    // windDay1.textContent =
+    // windDay2.textContent =
+    // windDay3.textContent =
+    // windDay4.textContent =
+    // windDay5.textContent =
+
+    // humidityDay1.textContent = 
+    // humidityDay2.textContent = 
+    // humidityDay3.textContent = 
+    // humidityDay4.textContent = 
+    // humidityDay5.textContent = 
+
+
+
+}
 
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 
