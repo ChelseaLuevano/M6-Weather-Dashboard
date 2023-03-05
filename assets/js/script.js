@@ -89,10 +89,8 @@ function weatherAPI () {
             if (response.ok) {
                 response.json().then(function (data) {
                     console.log(data);
-                    updateCity(data);
+                    updateSelectedCity(data);
                     updateDate (data);
-                    updateTemperatureAndHumidity(data.main);
-                    updateWind(data.wind)
                   });
             }
             else {
@@ -103,31 +101,18 @@ function weatherAPI () {
 }
 
 // // Function to update the city value in Currently Selected City Container
-// function updateCity(name) {
-//     cityTitleEL.textContent = name;
-// }
-
-
-// Function to update the city value in Currently Selected City Container
-let updateCity = function (name) {
-    cityTitleEL.textContent = name.name;
+function updateSelectedCity(data) {
+    cityTitleEL.textContent = data.name;
+    cityTemperatureEl.textContent = data.main.temp;
+    cityWindEl.textContent = data.wind.speed;
+    cityHumidityEl.textContent = data.main.humidity;
 }
+
 
 // Function to update the date value in Currently Selected City Container
 let updateDate = function(dt_txt) {
     cityDateEl.textContent = dt_txt;
 }
-
-// Function to update the weather values in Currently Selected City Container
-function updateTemperatureAndHumidity(temp, main) {
-   cityTemperatureEl.textContent = temp.temp;
-   cityHumidityEl.textContent = main.humidity;
-}
-
-// Function to update the wind values in Currently Selected City Container
-function updateWind(wind) {
-    cityWindEl.textContent = wind;
- }
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 
 cityFormEl.addEventListener('submit',formSearchHandler);
