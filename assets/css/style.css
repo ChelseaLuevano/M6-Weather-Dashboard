@@ -64,6 +64,7 @@ li {
 /* h2 & h3 bold font styling */
 h2, h3 {
     font-weight: bold;
+    margin: 0.5%;
 }
 
 
@@ -98,7 +99,11 @@ ul{
 #current-weather-titles {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+/* margin for city detail paragraphs to be aligned with city title margin */
+p.city-details {
+    margin: 0.5%;
 }
 
 /* Forecast Container Styling */
