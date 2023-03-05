@@ -45,7 +45,6 @@ main {
 #city-form {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     margin: 5%;
     padding: 2%;
 } 
