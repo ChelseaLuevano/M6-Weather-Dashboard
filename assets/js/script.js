@@ -92,20 +92,37 @@ function weatherAPI () {
     event.preventDefault();
 
     cityName = cityInputEl.value.trim();
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     fetch(queryURL)
         .then(function(response){
             if (response.ok) {
-                response.json().then(function (data) {
+                response.json()
+                .then(function (data) {
+        
                     console.log(data);
                     updateSelectedCity(data);
                     updateForecast(data);
                     currentDayDate(data);
                     saveCitytoStorage(data);
                     readStorage(data);
-                  });
-            }
+                    
+                    // Tutor taught me how to destructure objects
+                   let {lat,lon} = data.coord;
+
+                // New URL is for the forecast weather API
+                   let newURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey; 
+        
+                    fetch(newURL)
+                        .then(function(response){
+                            if (response.ok) {
+                                response.json()
+                                .then(function (data) {
+                                    console.log(data);
+                        })
+                    }
+                });
+            })}
             else {
                 alert('Unable to connect to Weather API');
             }
@@ -191,11 +208,18 @@ function updateForecast(data) {
 
 }
 
-
+// Tutor taught me to set conditional statements into variable declarations 
+let history = JSON.parse(localStorage.getItem("history")) || [];
 
 // store the cities searched locally
 function saveCitytoStorage(data){
-  localStorage.setItem("name", JSON.stringify(data.name));
+     // Limit to last 5 cities
+     if (history.length >= 5) {
+        // Using pop method to remove the oldest searched city, which would have the first place in the array;
+        history.pop(0);
+    }
+    history.push(data.name);
+    localStorage.setItem("history", JSON.stringify(history));
 }
 
 // // Need to call save function to activate it;
@@ -203,8 +227,8 @@ function saveCitytoStorage(data){
 
 // read storage
 function readStorage(data){
-    
-        let savedCity = ("name");
+
+        let savedCity = ("history");
 
         let keyStorage = JSON.parse(localStorage.getItem(savedCity));
 
