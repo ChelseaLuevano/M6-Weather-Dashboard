@@ -191,33 +191,45 @@ function updateForecast(data) {
 
 }
 
+
+
 // store the cities searched locally
 function saveCitytoStorage(data){
-    localStorage.setItem("name", JSON.stringify(data.name));
+  localStorage.setItem("name", JSON.stringify(data.name));
 }
+
+// // Need to call save function to activate it;
+// saveCitytoStorage();
 
 // read storage
 function readStorage(data){
     
-        let savedCity = data.name;
+        let savedCity = ("name");
 
         let keyStorage = JSON.parse(localStorage.getItem(savedCity));
-    
-        console.log(keyStorage);
 
+        for (let i = 0; i < cityListEl.length; i++) {
         // create city button list item
-        let searchedCityEl = document.createElement('li');
+        let newLi = document.createElement('li');
         // update text of the new list item
-        searchedCityEl.textContent = keyStorage;
+        newLi.textContent = keyStorage;
         // searchedCityEl.setAttribute(id="city-btn");
-        cityListEl.appendChild(searchedCityEl);
+        cityListEl.appendChild(newLi);
+        
+        }
+
+        // // create city button list item
+        // let searchedCityEl = document.createElement('li');
+        // // update text of the new list item
+        // searchedCityEl.textContent = keyStorage;
+        // // searchedCityEl.setAttribute(id="city-btn");
+        // cityListEl.appendChild(searchedCityEl);
        
         
-        // cityButtonsEl.textContent;
 
 }
 
-
+readStorage();
 
 // When the search button is clicked on the city form, then call the Form Search Handler function 
 cityFormEl.addEventListener('submit',formSearchHandler);
