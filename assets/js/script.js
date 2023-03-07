@@ -232,15 +232,30 @@ function readStorage(data){
 
         let keyStorage = JSON.parse(localStorage.getItem(savedCity));
 
-        for (let i = 0; i < cityListEl.length; i++) {
-        // create city button list item
-        let newLi = document.createElement('li');
-        // update text of the new list item
-        newLi.textContent = keyStorage;
-        // searchedCityEl.setAttribute(id="city-btn");
-        cityListEl.appendChild(newLi);
+         // create city button list item
+         let newLi = document.createElement('li');
+         ;        // update text of the new list item
+                 newLi.textContent = keyStorage[keyStorage.length-1];
+                 newLi.setAttribute("class","btn btn-primary btn-sm");
+                 newLi.setAttribute("id","city-btn");
+                 cityListEl.appendChild(newLi);
+
+            
+
+
+        // cityButtonsEl.each(function () {
         
-        }
+
+        // })
+
+//         for (let i = 0; i < cityListEl.length; i++) {
+//         // create city button list item
+//         let newLi = document.createElement('li');
+// ;        // update text of the new list item
+//         newLi.textContent = keyStorage;
+//         // searchedCityEl.setAttribute(id="city-btn");
+//         cityListEl.appendChild(newLi);
+//         }
 
         // // create city button list item
         // let searchedCityEl = document.createElement('li');
