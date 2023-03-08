@@ -22,6 +22,7 @@ let cityHumidityEl = document.querySelector('#humidity');
 
 // Query Selector Variables for 5 Day Weather Forecast Container
 let forecastEl = document.querySelector('#forecast');
+let dayDateEl = document.querySelector('.date');
 let day1Card= document.querySelector('#date-1');
 let day2Card= document.querySelector('#date-2');
 let day3Card= document.querySelector('#date-3');
@@ -102,13 +103,13 @@ function weatherAPI () {
         
                     console.log(data);
                     updateSelectedCity(data);
-                    updateForecast(data);
-                    currentDayDate(data);
                     saveCitytoStorage(data);
                     readStorage(data);
                     
                     // Tutor taught me how to destructure objects
                    let {lat,lon} = data.coord;
+                  
+                   
 
                 // New URL is for the forecast weather API
                    let newURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey; 
@@ -119,6 +120,7 @@ function weatherAPI () {
                                 response.json()
                                 .then(function (data) {
                                     console.log(data);
+                                    updateForecast(data);
                         })
                     }
                 });
@@ -137,8 +139,6 @@ function updateSelectedCity(data) {
     cityWindEl.textContent = data.wind.speed + " MPH";
     cityHumidityEl.textContent = data.main.humidity + " %";
 
- 
-
     // update current date and translate it from unix timestamp data format stored in the API
     let unixTimestamp = data.dt;
     // Convert the unix timestamp into milliseconds by multiplying it by 1000
@@ -155,7 +155,8 @@ function updateSelectedCity(data) {
     imgIconEl.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
 }
 
-// function to determine next 5 dates
+
+// function to determine next 5 dates -- not currently being used
 function currentDayDate (data){
     // update current date and translate it from unix timestamp data format stored in the API
     console.log (data.dt);
@@ -165,21 +166,79 @@ function currentDayDate (data){
     // Use the newly created milliseconds value to create a date object with the new Date() constructor method
     let dataObject = new Date(milliseconds);
     // Use the .toLocaleString() function to convert the date object into human-friendly date strings
-    currentDay = dataObject.toLocaleString("en-GB", {day: "numeric"});
+    currentDay = dataObject.toLocaleString();
     
     console.log(currentDay);
 
-    secondDay = parseInt(currentDay) + 1;
+    // currentDay
 
-    console.log(secondDay);
+    // secondDay = parseInt(currentDay) + 1;
 
-    // secondDay.toLocaleString("en-US", {dateStyle: "short"});
+    // console.log(secondDay);
 
+    // // secondDay.toLocaleString("en-US", {dateStyle: "short"});
 
+    // // create new date object
+    // let d = new Date();
+
+    // console.log(d.toString());
+    // // determine current date and time
+    // let currentTime = data.list[0].dt_txt
+    // console.log(currentTime);
+
+    // d.setTime(currentTime);
 }
 
+//  // New URL is for the forecast weather API - not currently being used
+//  let newURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey; 
+        
+//  async function getWeather(newURL) {
+
+//    let weatherObject = await fetch(newURL)
+//     .then(function(response){
+//         if (response.ok) {
+//             response.json()
+//             .then(function (data) {
+//                 console.log(data);
+//                 updateForecast(data);
+//     })
+// }
+// });
+    
+    
+// }    
 // Function to update 5 Day Weather Forecast Container
 function updateForecast(data) {
+    
+    let currentTime = data.list[0].dt_txt
+    // The list array is showing a forecast for every three hours. 24 hours /3 = 8. This means to pull data by day, I should pull data from every 8th place in array 
+    let listLength = data.list[0].length;
+    console.log (data.list);
+    // // update days
+    let j = 0;
+    let k = 1;
+    for (let i = 0; i < data.list.length; i++) {
+    //    let day1 = data.list[i + 8];
+   j++;    
+        
+    if (j === 8) {
+        console.log(data.list[i]);
+       
+       
+        // day[k]Card.textContent = data.dt;
+    // day2Card.textContent = 
+    // day3Card.textContent = 
+    // day4Card.textContent = 
+    // day5Card.textContent = 
+        j = 0;
+        k++;        
+    }
+       
+    //    console.log(data.list[i + 8]);
+        
+    }
+    
+ 
     // day1Card.textContent = 
     // day2Card.textContent = 
     // day3Card.textContent = 
@@ -234,38 +293,17 @@ function readStorage(data){
 
          // create city button list item
          let newLi = document.createElement('li');
-         ;        // update text of the new list item
+                 // update text of the new list item
                  newLi.textContent = keyStorage[keyStorage.length-1];
                  newLi.setAttribute("class","btn btn-primary btn-sm");
                  newLi.setAttribute("id","city-btn");
                  cityListEl.appendChild(newLi);
 
-            
-
-
         // cityButtonsEl.each(function () {
-        
+    
+        //     // let keyStorage = JSON.parse(localStorage.getItem(savedCity));
 
-        // })
-
-//         for (let i = 0; i < cityListEl.length; i++) {
-//         // create city button list item
-//         let newLi = document.createElement('li');
-// ;        // update text of the new list item
-//         newLi.textContent = keyStorage;
-//         // searchedCityEl.setAttribute(id="city-btn");
-//         cityListEl.appendChild(newLi);
-//         }
-
-        // // create city button list item
-        // let searchedCityEl = document.createElement('li');
-        // // update text of the new list item
-        // searchedCityEl.textContent = keyStorage;
-        // // searchedCityEl.setAttribute(id="city-btn");
-        // cityListEl.appendChild(searchedCityEl);
-       
-        
-
+        // }) 
 }
 
 readStorage();
